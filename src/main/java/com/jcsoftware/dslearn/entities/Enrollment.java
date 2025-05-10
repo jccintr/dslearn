@@ -43,6 +43,68 @@ public class Enrollment {
 		this.available = available;
 		this.onlyUpdate = onlyUpdate;
 	}
+	
+	public User getStudent() {
+		return this.id.getUser();
+	}
+	
+	public void setStudent(User student) {
+		this.id.setUser(student);
+	}
+	
+	public Offer getOffer() {
+		return this.id.getOffer();
+	}
+	
+	public void setOffer(Offer offer) {
+		this.id.setOffer(offer);
+	}
+	
+	public Instant getEnrollMoment() {
+		return enrollMoment;
+	}
+
+
+
+	public void setEnrollMoment(Instant enrollMoment) {
+		this.enrollMoment = enrollMoment;
+	}
+
+
+
+	public Instant getRefundMoment() {
+		return refundMoment;
+	}
+
+
+
+	public void setRefundMoment(Instant refundMoment) {
+		this.refundMoment = refundMoment;
+	}
+
+
+
+	public Boolean getAvailable() {
+		return available;
+	}
+
+
+
+	public void setAvailable(Boolean available) {
+		this.available = available;
+	}
+
+
+
+	public Boolean getOnlyUpdate() {
+		return onlyUpdate;
+	}
+
+
+
+	public void setOnlyUpdate(Boolean onlyUpdate) {
+		this.onlyUpdate = onlyUpdate;
+	}
 
 
 
