@@ -1,10 +1,6 @@
 package com.jcsoftware.dslearn.entities;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-
-import com.jcsoftware.dslearn.entities.enums.ResourceType;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,8 +20,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "resources")
-public class Resource {
+@Table(name = "sections")
+public class Section {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,15 +30,14 @@ public class Resource {
 	private String description;
 	private Integer position;
 	private String imgUri;
-	private ResourceType type;
-	private String externalLink;
 	
 	@ManyToOne
-	@JoinColumn(name = "offer_id")
-	private Offer offer;
+	@JoinColumn(name = "resource_id")
+	private Resource resource;
 	
-	@OneToMany(mappedBy = "resource")
-	private List<Section> sections = new ArrayList<>();
+	@OneToOne
+	@JoinColumn(name = "prerequisite_id")
+	private Section section;
 	
 	@Override
 	public int hashCode() {
@@ -56,10 +51,9 @@ public class Resource {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Resource other = (Resource) obj;
+		Section other = (Section) obj;
 		return Objects.equals(id, other.id);
 	}
-	
 	
 	
 	
