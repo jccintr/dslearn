@@ -35,9 +35,9 @@ public class Section {
 	@JoinColumn(name = "resource_id")
 	private Resource resource;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "prerequisite_id")
-	private Section section;
+	private Section prerequisite;
 	
 	@Override
 	public int hashCode() {

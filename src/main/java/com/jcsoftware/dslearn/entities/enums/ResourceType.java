@@ -22,6 +22,6 @@ public enum ResourceType {
 				return rt;
 			}
 		}
-		throw new IllegalArgumentException("Invalid Order Status code");
+		throw new IllegalArgumentException("Invalid ResourceType Status code");
 	}
 }
