@@ -1,7 +1,8 @@
 package com.jcsoftware.dslearn.entities;
 
-import java.time.Instant;
 import java.util.Objects;
+
+import com.jcsoftware.dslearn.entities.enums.ResourceType;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,20 +21,22 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "ofters")
-
-public class Ofter {
+@Table(name = "resources")
+public class Resource {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String edition;
-	private Instant startMoment;
-	private Instant endMoment;
+	private String title;
+	private String description;
+	private Integer position;
+	private String imgUri;
+	private ResourceType type;
+	private String externalLink;
 	
 	@ManyToOne
-	@JoinColumn(name = "course_id")
-	private Course course;
+	@JoinColumn(name = "offer_id")
+	private Offer offer;
 	
 	@Override
 	public int hashCode() {
@@ -47,9 +50,11 @@ public class Ofter {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Ofter other = (Ofter) obj;
+		Resource other = (Resource) obj;
 		return Objects.equals(id, other.id);
 	}
+	
+	
 	
 	
 

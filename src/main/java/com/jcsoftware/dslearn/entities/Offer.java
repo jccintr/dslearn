@@ -1,22 +1,16 @@
 package com.jcsoftware.dslearn.entities;
 
-
-
+import java.time.Instant;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -24,29 +18,27 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "offers")
+public class Offer {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String name;
-	@Column(unique = true)
-	private String email;
-	private String password;
+	private String edition;
+	private Instant startMoment;
+	private Instant endMoment;
 	
-	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private Set<Role> roles = new HashSet<>();
+	@ManyToOne
+	@JoinColumn(name = "course_id")
+	private Course course;
 	
-	@OneToMany(mappedBy = "user")
-	private List<Notification> notifications = new ArrayList<>();
+	@OneToMany(mappedBy = "offer")
+	private List<Resource> resources = new ArrayList<>();
 	
 	@Override
 	public int hashCode() {
@@ -60,9 +52,10 @@ public class User {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		Offer other = (Offer) obj;
 		return Objects.equals(id, other.id);
 	}
-
 	
+	
+
 }

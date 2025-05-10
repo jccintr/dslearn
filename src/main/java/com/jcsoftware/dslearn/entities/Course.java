@@ -27,11 +27,11 @@ public class Course {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private String imgUrl;
-	private String imgGrayUrl;
+	private String imgUri;
+	private String imgGrayUri;
 	
 	@OneToMany(mappedBy = "course")
-	private List<Ofter> ofters = new ArrayList<>();
+	private List<Offer> offers = new ArrayList<>();
 	
 	@Override
 	public int hashCode() {
