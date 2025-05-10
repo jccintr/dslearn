@@ -1,6 +1,8 @@
 package com.jcsoftware.dslearn.entities;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import com.jcsoftware.dslearn.entities.pk.EnrollmentPK;
@@ -8,6 +10,7 @@ import com.jcsoftware.dslearn.entities.pk.EnrollmentPK;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 
@@ -26,6 +29,9 @@ public class Enrollment {
 	
 	private Boolean available = true;
 	private Boolean onlyUpdate;
+	
+	@OneToMany(mappedBy = "enrollment")
+	private List<Deliver> deliveries = new ArrayList<>();
 	
 	public Enrollment() {
 		
